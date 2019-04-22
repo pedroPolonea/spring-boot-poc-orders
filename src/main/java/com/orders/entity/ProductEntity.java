@@ -19,7 +19,7 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID_PRODUCT", nullable = false, unique = true)
-    private Long Id;
+    private Long id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
