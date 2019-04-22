@@ -11,5 +11,7 @@ public interface ProductService {
 
     Optional<ProductEntity> getId(Long id);
 
+    List<ProductEntity> findAllActive();
+
     ProductEntity save(ProductEntity product);
 }
