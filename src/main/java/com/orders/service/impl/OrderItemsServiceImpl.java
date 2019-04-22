@@ -27,7 +27,7 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 
     @Override
     public List<OrderItemsEntity> findByOrder(OrderEntity order) {
-        return orderItemsRepository.findByOrderAsc(order);
+        return orderItemsRepository.findByOrder(order);
     }
 
     @Override
