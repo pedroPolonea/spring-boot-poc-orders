@@ -49,7 +49,7 @@ public class ProductEntity {
     @Column(name = "PRODUCT_TYPE", nullable = false)
     private ProductType productType;
 
-    @OneToMany(mappedBy="product", orphanRemoval=true, cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="product", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItemsEntity> items;
 
     @PrePersist
