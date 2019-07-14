@@ -12,7 +12,6 @@ import org.mapstruct.Named;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 
 @Mapper(componentModel = "spring")
@@ -28,7 +27,7 @@ public interface OrderMapping {
     default BigDecimal sumValue(final List<OrderItemsEntity> items) {
         BigDecimal value = BigDecimal.ZERO;
 
-        if(CollectionUtils.isNotEmpty(items)) {
+        if(items != null) {
             for (OrderItemsEntity item : items) {
                 value.add(item.getUnitaryValue().multiply(new BigDecimal(item.getAmount())));
             }
