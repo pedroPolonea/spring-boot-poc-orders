@@ -9,6 +9,8 @@
 
 ### IntelliJ IDEA ###
 .idea
+.out
+.build
 *.iws
 *.iml
 *.ipr

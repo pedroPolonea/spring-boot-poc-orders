@@ -19,17 +19,7 @@ public class OrdersApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		SellerEntity sellerEntity =  new SellerEntity();
-		sellerEntity.setId(1L);
-		sellerEntity.setName("Polos");
 
-		OrderEntity orderEntity = new OrderEntity();
-		orderEntity.setId(1L);
-		orderEntity.setSellerEntity(sellerEntity);
-
-		OrderSummaryVO orderSummaryVO = orderMapping.orderEntityToOrderSummaryVO(orderEntity);
-
-		orderSummaryVO.getId();
 	}
 
 }

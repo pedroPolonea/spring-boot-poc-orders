@@ -2,10 +2,7 @@ package com.orders.map.mapping;
 
 import com.orders.entity.OrderEntity;
 import com.orders.entity.OrderItemsEntity;
-import com.orders.map.mapping.decorator.OrderMappingDecorator;
 import com.orders.map.vo.OrderSummaryVO;
-import org.apache.commons.collections4.CollectionUtils;
-import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -15,7 +12,6 @@ import java.util.List;
 
 
 @Mapper(componentModel = "spring")
-@DecoratedWith(OrderMappingDecorator.class)
 public interface OrderMapping {
 
     @Mapping(target = "sellerSummaryVO", ignore = true)
