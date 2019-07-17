@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-con-dcy
+    hostname: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=orders
+    ports:
+      - 3305:3306
+    expose:
+      - 3305
+    volumes:
+      - my-db:/var/lib/mysql
+  backend:
+    container_name: orders-con-dcy
+    build:
+      context: .
+      dockerfile: Dockerfile
+volumes:
+  my-db:
