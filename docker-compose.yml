@@ -1,11 +1,12 @@
 version: '3.3'
 services:
-  db:
+  docker-mysql:
     image: mysql:5.7
     container_name: mysql-con-dcy
-    hostname: db
+    hostname: cartago
     environment:
       - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=cartago
       - MYSQL_USER=root
       - MYSQL_DATABASE=orders
     ports:
@@ -13,11 +14,47 @@ services:
     expose:
       - 3305
     volumes:
+      #Volume
       - my-db:/var/lib/mysql
+      #Script init
+      - ./src/main/resources/db/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - orders-net
+      - database-mysql-net
   backend:
     container_name: orders-con-dcy
+    networks:
+      - orders-net
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8000:9000
+    expose:
+      - 8000
+    environment:
+      - DATABASE_HOST=172.19.0.1
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=orders
+      - DATABASE_PORT=3305
     build:
       context: .
       dockerfile: Dockerfile
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: adm-mysql-dcy
+    depends_on:
+      - docker-mysql
+    ports:
+      - 80:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - database-mysql-net
 volumes:
   my-db:
+networks:
+  database-mysql-net:
+    driver: bridge
+  orders-net:
+    driver: bridge
